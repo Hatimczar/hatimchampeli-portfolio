@@ -159,12 +159,10 @@ export const ventures = [
 ];
 
 export const results = [
-  { value: 25, prefix: "", suffix: "%+", label: "Growth in high-value B2B deals", context: "Florence Trading FZCO, within 12 months" },
-  { value: 50000, prefix: "AED ", suffix: "+", label: "Digital marketing budget managed", context: "E-Man Transport Solutions, across search, social & display" },
-  { value: 50, prefix: "", suffix: "%", label: "Growth in organic search rankings", context: "E-Man Transport Solutions, via SEO & PPC overhaul" },
-  { value: 30, prefix: "", suffix: "%", label: "Increase in web traffic", context: "E-Man Transport Solutions, Feb 2022 - Mar 2024" },
-  { value: 35, prefix: "", suffix: "%", label: "Boost in ad relevance", context: "TMTC, via structured keyword research" },
-  { value: 20, prefix: "", suffix: "%", label: "Reduction in ad spend", context: "TMTC, on Google & Amazon Ads, performance held steady" },
+  { value: 4.1, prefix: "~AED ", suffix: "M", decimals: 1, label: "Commercial Revenue Driven", context: "Florence Trading FZCO" },
+  { value: 50000, prefix: "AED ", suffix: "+", decimals: 0, label: "Digital marketing budget managed", context: "E-Man Transport Solutions, across search, social & display" },
+  { value: 50, prefix: "", suffix: "%", decimals: 0, label: "Growth in organic search rankings", context: "E-Man Transport Solutions, plus a 30% increase in web traffic, Feb 2022 - Mar 2024" },
+  { value: 35, prefix: "", suffix: "%", decimals: 0, label: "Boost in ad relevance", context: "TMTC, plus a 20% cut in ad spend with performance held steady" },
 ];
 
 export const certifications = [
