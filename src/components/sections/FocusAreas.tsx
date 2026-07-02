@@ -2,13 +2,14 @@
 
 import { useRef, type MouseEvent } from "react";
 import { motion } from "framer-motion";
-import { Apple, ShoppingCart, Sparkles, Check } from "lucide-react";
+import { ShoppingCart, Sparkles, Check } from "lucide-react";
 import Container from "@/components/Container";
 import SectionHeading from "@/components/SectionHeading";
 import { RevealGroup, revealItem } from "@/components/Reveal";
+import { BrandIcon } from "@/lib/icons";
 import { focusAreas } from "@/lib/data";
 
-const icons = { apple: Apple, commerce: ShoppingCart, ai: Sparkles };
+const icons = { commerce: ShoppingCart, ai: Sparkles };
 
 function TiltCard({ area }: { area: (typeof focusAreas)[number] }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -52,7 +53,7 @@ function TiltCard({ area }: { area: (typeof focusAreas)[number] }) {
           }}
         />
         <div className="relative flex h-12 w-12 items-center justify-center rounded-md bg-accent-tint text-accent">
-          <Icon size={22} strokeWidth={1.75} />
+          {area.id === "apple" ? <BrandIcon id="apple" className="h-[22px] w-[22px]" /> : <Icon size={22} strokeWidth={1.75} />}
         </div>
         <h3 className="font-display relative mt-6 text-[20px] font-semibold text-ink">{area.title}</h3>
         <p className="relative mt-3 text-[14.5px] leading-relaxed text-body">{area.blurb}</p>

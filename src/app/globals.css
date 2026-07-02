@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --color-canvas: #fafafa;
   --color-canvas-alt: #f5f5f7;
@@ -25,6 +27,24 @@
   --font-display: -apple-system, "SF Pro Display", var(--font-inter), "Segoe UI", sans-serif;
   --font-text: -apple-system, "SF Pro Text", var(--font-inter), "Segoe UI", sans-serif;
   --font-mono: "SF Mono", var(--font-jetbrains-mono), ui-monospace, monospace;
+}
+
+.dark {
+  --color-canvas: #08080a;
+  --color-canvas-alt: #101013;
+  --color-ink: #f5f5f7;
+  --color-ink-soft: #e5e5ea;
+  --color-body: #a1a1a6;
+  --color-muted: #6e6e73;
+  --color-line: rgba(255, 255, 255, 0.1);
+  --color-accent: #8fb0d6;
+  --color-accent-soft: #6b8cb8;
+  --color-accent-tint: rgba(143, 176, 214, 0.12);
+  --color-surface: #131316;
+
+  --shadow-soft: 0 20px 60px rgba(0, 0, 0, 0.4);
+  --shadow-lift: 0 30px 80px rgba(0, 0, 0, 0.5);
+  --shadow-tight: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 @theme inline {
@@ -63,6 +83,11 @@ body {
   font-family: var(--font-text);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.dark body {
+  background-image: none;
 }
 
 ::selection {
@@ -94,6 +119,10 @@ body {
   background: rgba(250, 250, 250, 0.7);
   backdrop-filter: blur(20px) saturate(160%);
   -webkit-backdrop-filter: blur(20px) saturate(160%);
+}
+
+.dark .glass {
+  background: rgba(15, 15, 18, 0.6);
 }
 
 .glass-dark {

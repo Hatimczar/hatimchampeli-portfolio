@@ -37,7 +37,7 @@ export default function MagneticButton({
 
   const classes = clsx(
     "relative inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-[15px] font-medium transition-colors duration-300",
-    variant === "primary" ? "bg-ink text-white hover:bg-black" : "bg-transparent text-ink border border-line hover:bg-canvas-alt",
+    variant === "primary" ? "bg-ink text-canvas hover:opacity-90" : "bg-transparent text-ink border border-line hover:bg-canvas-alt",
     fullWidth && "w-full",
     className
   );

@@ -80,6 +80,7 @@ export const experience = [
       "Represent Florence at industry events, including with the Dubai Future Foundation.",
     ],
     logo: "/logos/florence-full-bw.png",
+    logoDark: "/logos/florence-full-white.png",
   },
   {
     id: "eman",

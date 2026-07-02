@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Container from "@/components/Container";
 import SectionHeading from "@/components/SectionHeading";
 import Reveal, { RevealGroup, revealItem } from "@/components/Reveal";
-import TechPersonalityQuiz from "@/components/TechPersonalityQuiz";
+import TechTrivia from "@/components/TechTrivia";
 import { aboutStrengths } from "@/lib/data";
 
 export default function About() {
@@ -35,7 +35,7 @@ export default function About() {
               </motion.div>
             </div>
             <div className="mx-auto w-full max-w-[320px] lg:mx-0">
-              <TechPersonalityQuiz />
+              <TechTrivia />
             </div>
           </Reveal>
 

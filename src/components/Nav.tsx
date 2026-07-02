@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { navLinks, profile } from "@/lib/data";
+import ThemeToggle from "@/components/ThemeToggle";
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -43,7 +44,7 @@ export default function Nav() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 px-4">
+    <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-center gap-3 pt-4 px-4">
       <motion.nav
         initial={{ y: -30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -64,7 +65,7 @@ export default function Nav() {
           {profile.name.split(" ")[0]}
         </a>
 
-        <div className="hidden md:flex items-center gap-1">
+        <div className="hidden lg:flex items-center gap-1">
           {navLinks.map((link) => (
             <button
               key={link.href}
@@ -87,15 +88,17 @@ export default function Nav() {
 
         <button
           onClick={() => handleClick("#contact")}
-          className="hidden md:inline-flex items-center rounded-full bg-ink px-4 py-1.5 text-[13.5px] font-medium text-white transition-transform duration-200 hover:scale-[1.04]"
+          className="hidden lg:inline-flex items-center rounded-full bg-ink px-4 py-1.5 text-[13.5px] font-medium text-canvas transition-transform duration-200 hover:scale-[1.04]"
         >
           Let&apos;s Talk
         </button>
 
-        <button className="md:hidden text-ink" onClick={() => setOpen((v) => !v)} aria-label="Toggle menu">
+        <button className="lg:hidden text-ink" onClick={() => setOpen((v) => !v)} aria-label="Toggle menu">
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </motion.nav>
+
+      <ThemeToggle />
 
       <AnimatePresence>
         {open && (
@@ -104,7 +107,7 @@ export default function Nav() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.25 }}
-            className="glass absolute top-[70px] w-[calc(100%-32px)] max-w-[880px] rounded-3xl border border-line p-3 md:hidden"
+            className="absolute top-[70px] w-[calc(100%-32px)] max-w-[880px] rounded-3xl border border-line bg-surface p-3 shadow-lift backdrop-blur-xl lg:hidden"
           >
             {navLinks.map((link) => (
               <button

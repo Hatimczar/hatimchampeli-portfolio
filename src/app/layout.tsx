@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
+import ThemeProvider from "@/components/ThemeProvider";
+import SiriGlow from "@/components/SiriGlow";
 import "./globals.css";
 
 const inter = Inter({
@@ -62,9 +64,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} h-full`}>
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} h-full`} suppressHydrationWarning>
       <body className="min-h-full flex flex-col antialiased">
-        <SmoothScrollProvider>{children}</SmoothScrollProvider>
+        <ThemeProvider>
+          <SiriGlow />
+          <SmoothScrollProvider>{children}</SmoothScrollProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

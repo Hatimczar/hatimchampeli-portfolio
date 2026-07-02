@@ -9,7 +9,7 @@ import { results } from "@/lib/data";
 
 export default function Results() {
   return (
-    <section id="results" className="section-pad bg-ink text-white">
+    <section id="results" className="section-pad bg-neutral-950 text-white">
       <Container>
         <SectionHeading
           eyebrow="Results"

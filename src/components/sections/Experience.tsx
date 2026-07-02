@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, MapPin } from "lucide-react";
+import { useTheme } from "next-themes";
 import Container from "@/components/Container";
 import SectionHeading from "@/components/SectionHeading";
 import Reveal from "@/components/Reveal";
@@ -19,6 +20,10 @@ function ExperienceCard({
   isLast: boolean;
 }) {
   const [open, setOpen] = useState(index === 0);
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const logoSrc = mounted && resolvedTheme === "dark" && item.logoDark ? item.logoDark : item.logo;
 
   return (
     <Reveal delay={index * 0.06} className="relative pl-10 md:pl-16">
@@ -33,9 +38,9 @@ function ExperienceCard({
       >
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="flex items-center gap-4">
-            {item.logo ? (
+            {logoSrc ? (
               <span className="relative h-8 w-[124px] shrink-0">
-                <Image src={item.logo} alt={item.company} fill sizes="124px" className="object-contain object-left" />
+                <Image src={logoSrc} alt={item.company} fill sizes="124px" className="object-contain object-left" />
               </span>
             ) : null}
             <div>
