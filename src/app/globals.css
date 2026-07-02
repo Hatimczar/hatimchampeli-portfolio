@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+:root {
+  --color-canvas: #fafafa;
+  --color-canvas-alt: #f5f5f7;
+  --color-ink: #0a0a0a;
+  --color-ink-soft: #1d1d1f;
+  --color-body: #48484a;
+  --color-muted: #86868b;
+  --color-line: rgba(10, 10, 10, 0.08);
+  --color-accent: #35507a;
+  --color-accent-soft: #6b8cb8;
+  --color-accent-tint: #eef2f7;
+  --color-surface: #ffffff;
+
+  --radius-sm: 14px;
+  --radius-md: 22px;
+  --radius-lg: 32px;
+  --radius-pill: 999px;
+
+  --shadow-soft: 0 20px 60px rgba(10, 10, 10, 0.06);
+  --shadow-lift: 0 30px 80px rgba(10, 10, 10, 0.12);
+  --shadow-tight: 0 8px 24px rgba(10, 10, 10, 0.06);
+
+  --font-display: -apple-system, "SF Pro Display", var(--font-inter), "Segoe UI", sans-serif;
+  --font-text: -apple-system, "SF Pro Text", var(--font-inter), "Segoe UI", sans-serif;
+  --font-mono: "SF Mono", var(--font-jetbrains-mono), ui-monospace, monospace;
+}
+
+@theme inline {
+  --color-canvas: var(--color-canvas);
+  --color-canvas-alt: var(--color-canvas-alt);
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-body: var(--color-body);
+  --color-muted: var(--color-muted);
+  --color-line: var(--color-line);
+  --color-accent: var(--color-accent);
+  --color-accent-soft: var(--color-accent-soft);
+  --color-accent-tint: var(--color-accent-tint);
+  --color-surface: var(--color-surface);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-pill: var(--radius-pill);
+  --font-display: var(--font-display);
+  --font-text: var(--font-text);
+  --font-mono: var(--font-mono);
+  --shadow-soft: var(--shadow-soft);
+  --shadow-lift: var(--shadow-lift);
+  --shadow-tight: var(--shadow-tight);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-canvas);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cg fill='none' stroke='rgba(10,10,10,0.05)' stroke-width='1'%3E%3Cpath d='M0 70H40M40 70V20M40 20H100M100 20V70M100 70H140M40 70V120M40 120H90'/%3E%3C/g%3E%3Cg fill='rgba(10,10,10,0.055)'%3E%3Ccircle cx='40' cy='70' r='3'/%3E%3Ccircle cx='40' cy='20' r='2.5'/%3E%3Ccircle cx='100' cy='20' r='2.5'/%3E%3Ccircle cx='100' cy='70' r='2.5'/%3E%3Ccircle cx='40' cy='120' r='2.5'/%3E%3Ccircle cx='90' cy='120' r='2.5'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+  color: var(--color-ink-soft);
+  font-family: var(--font-text);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: white;
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(10, 10, 10, 0.15);
+  border-radius: 999px;
+}
+
+.glass {
+  background: rgba(250, 250, 250, 0.7);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+}
+
+.glass-dark {
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+}
+
+.section-pad {
+  padding-top: clamp(72px, 10vw, 140px);
+  padding-bottom: clamp(72px, 10vw, 140px);
+}
+
+.container-px {
+  padding-left: clamp(20px, 5vw, 80px);
+  padding-right: clamp(20px, 5vw, 80px);
+}
