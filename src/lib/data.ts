@@ -160,7 +160,7 @@ export const ventures = [
 ];
 
 export const results = [
-  { value: 4.1, prefix: "~AED ", suffix: "M", decimals: 1, label: "Commercial Revenue Driven", context: "Florence Trading FZCO" },
+  { value: 11.6, prefix: "~AED ", suffix: "M", decimals: 1, label: "Commercial Revenue Driven", context: "Florence Trading FZCO" },
   { value: 50000, prefix: "AED ", suffix: "+", decimals: 0, label: "Digital marketing budget managed", context: "E-Man Transport Solutions, across search, social & display" },
   { value: 50, prefix: "", suffix: "%", decimals: 0, label: "Growth in organic search rankings", context: "E-Man Transport Solutions, plus a 30% increase in web traffic, Feb 2022 - Mar 2024" },
   { value: 35, prefix: "", suffix: "%", decimals: 0, label: "Boost in ad relevance", context: "TMTC, plus a 20% cut in ad spend with performance held steady" },
