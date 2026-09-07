@@ -4,6 +4,15 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
 
+const FIBERS = [
+  { width: 560, top: "12%", left: "-15%", rotate: -14, color: "rgba(255,255,255,0.55)", duration: 22, delay: 0 },
+  { width: 460, top: "28%", left: "45%", rotate: 10, color: "rgba(93,150,255,0.5)", duration: 26, delay: 3 },
+  { width: 500, top: "48%", left: "-10%", rotate: -8, color: "rgba(255,178,90,0.45)", duration: 24, delay: 1.5 },
+  { width: 420, top: "66%", left: "55%", rotate: 16, color: "rgba(255,255,255,0.4)", duration: 28, delay: 5 },
+  { width: 380, top: "8%", left: "58%", rotate: -20, color: "rgba(93,150,255,0.4)", duration: 20, delay: 2 },
+  { width: 440, top: "82%", left: "5%", rotate: 6, color: "rgba(255,178,90,0.35)", duration: 30, delay: 4 },
+];
+
 export default function SiriGlow() {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -24,36 +33,23 @@ export default function SiriGlow() {
           className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
           aria-hidden
         >
-          {/* white glossy core */}
-          <motion.div
-            className="absolute left-1/2 top-[-14%] h-[460px] w-[460px] -translate-x-1/2 rounded-full"
-            style={{
-              background: "radial-gradient(circle, rgba(255,255,255,0.5), rgba(255,255,255,0.08) 55%, transparent 72%)",
-              filter: "blur(70px)",
-            }}
-            animate={{ scale: [1, 1.08, 1], opacity: [0.7, 0.9, 0.7] }}
-            transition={{ duration: 10, ease: "easeInOut", repeat: Infinity }}
-          />
-          {/* blue rim fringe */}
-          <motion.div
-            className="absolute left-[62%] top-[-8%] h-[340px] w-[340px] -translate-x-1/2 rounded-full"
-            style={{
-              background: "radial-gradient(circle, rgba(93,150,255,0.35), transparent 68%)",
-              filter: "blur(64px)",
-            }}
-            animate={{ x: [0, 14, 0], scale: [1, 1.06, 1], opacity: [0.5, 0.7, 0.5] }}
-            transition={{ duration: 12, ease: "easeInOut", repeat: Infinity }}
-          />
-          {/* amber/gold rim fringe */}
-          <motion.div
-            className="absolute left-[38%] top-[-2%] h-[300px] w-[300px] -translate-x-1/2 rounded-full"
-            style={{
-              background: "radial-gradient(circle, rgba(255,178,90,0.3), transparent 68%)",
-              filter: "blur(60px)",
-            }}
-            animate={{ x: [0, -12, 0], scale: [1.05, 0.95, 1.05], opacity: [0.45, 0.65, 0.45] }}
-            transition={{ duration: 9, ease: "easeInOut", repeat: Infinity }}
-          />
+          {FIBERS.map((fiber, i) => (
+            <motion.div
+              key={i}
+              className="absolute h-px rounded-full"
+              style={{
+                width: fiber.width,
+                top: fiber.top,
+                left: fiber.left,
+                background: `linear-gradient(90deg, transparent, ${fiber.color}, transparent)`,
+                filter: "blur(3px)",
+                rotate: fiber.rotate,
+                willChange: "transform, opacity",
+              }}
+              animate={{ x: [0, 70, 0], opacity: [0.15, 0.6, 0.15] }}
+              transition={{ duration: fiber.duration, repeat: Infinity, ease: "easeInOut", delay: fiber.delay }}
+            />
+          ))}
         </motion.div>
       ) : null}
     </AnimatePresence>

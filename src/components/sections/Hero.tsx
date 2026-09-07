@@ -7,7 +7,7 @@ import Container from "@/components/Container";
 import MagneticButton from "@/components/MagneticButton";
 import BrandMark from "@/components/BrandMark";
 import ContinuumDots from "@/components/ContinuumDots";
-import HeroOrb from "@/components/HeroOrb";
+import GradientText from "@/components/GradientText";
 import { useScrollToSection } from "@/hooks/useScrollToSection";
 import { brands, platforms, profile } from "@/lib/data";
 
@@ -36,8 +36,6 @@ export default function Hero() {
             "radial-gradient(60% 50% at 50% 0%, rgba(53,80,122,0.10) 0%, rgba(250,250,250,0) 70%)",
         }}
       />
-      <HeroOrb />
-
       <Container>
         <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-10">
           <div>
@@ -61,7 +59,9 @@ export default function Hero() {
                   variants={wordVariants}
                   className="inline-block mr-[0.28em]"
                 >
-                  {word}
+                  <GradientText colors={["var(--color-ink)", "var(--color-accent)", "var(--color-ink)"]} animationSpeed={7}>
+                    {word}
+                  </GradientText>
                 </motion.span>
               ))}
             </h1>
