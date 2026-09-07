@@ -1,40 +1,48 @@
 "use client";
 
-import { motion } from "framer-motion";
-
-const FIBERS = [
-  { width: 620, top: "12%", left: "-15%", rotate: -14, color: "rgba(255,255,255,0.95)", duration: 22, delay: 0 },
-  { width: 520, top: "28%", left: "42%", rotate: 10, color: "rgba(120,170,255,0.9)", duration: 26, delay: 3 },
-  { width: 560, top: "48%", left: "-10%", rotate: -8, color: "rgba(255,190,110,0.85)", duration: 24, delay: 1.5 },
-  { width: 480, top: "66%", left: "52%", rotate: 16, color: "rgba(255,255,255,0.75)", duration: 28, delay: 5 },
-  { width: 440, top: "8%", left: "55%", rotate: -20, color: "rgba(120,170,255,0.8)", duration: 20, delay: 2 },
-  { width: 500, top: "82%", left: "2%", rotate: 6, color: "rgba(255,190,110,0.7)", duration: 30, delay: 4 },
-];
+import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
+import GhostFibers from "@/components/GhostFibers";
 
 export default function SiriGlow() {
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted || resolvedTheme !== "dark") return null;
+
   return (
-    <div
-      aria-hidden
-      className="pointer-events-none fixed inset-0 -z-10 overflow-hidden opacity-0 transition-opacity duration-700 dark:opacity-100"
-    >
-      {FIBERS.map((fiber, i) => (
-        <motion.div
-          key={i}
-          className="absolute rounded-full"
-          style={{
-            width: fiber.width,
-            height: 2,
-            top: fiber.top,
-            left: fiber.left,
-            background: `linear-gradient(90deg, transparent, ${fiber.color}, transparent)`,
-            filter: "blur(2.5px)",
-            rotate: fiber.rotate,
-            willChange: "transform, opacity",
-          }}
-          animate={{ x: [0, 70, 0], opacity: [0.35, 1, 0.35] }}
-          transition={{ duration: fiber.duration, repeat: Infinity, ease: "easeInOut", delay: fiber.delay }}
-        />
-      ))}
+    <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+      <GhostFibers
+        lineColor="#272a38"
+        glowColor="#edc585"
+        speed={0.2}
+        scale={2}
+        rotation={0}
+        rotationSpeed={0.25}
+        layers={4}
+        waveAmplitude={0.015}
+        waveFrequency={3}
+        waveSpeed={0.15}
+        layerSpeed={0.08}
+        twist={0.1}
+        twistFrequency={5}
+        twistSpeed={1.2}
+        lineFrequency={5}
+        lineSpacing={2}
+        lineSharpness={16}
+        glowFalloff={10}
+        glowIntensity={1.6}
+        brightness={2}
+        blueBoost={1.25}
+        vignette={0.8}
+        grain={0.05}
+        dpr={1}
+        lightMode={false}
+        fps={60}
+        paused={false}
+      />
     </div>
   );
 }
