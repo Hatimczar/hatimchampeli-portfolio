@@ -1,8 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useTheme } from "next-themes";
+import { motion } from "framer-motion";
 
 const FIBERS = [
   { width: 560, top: "12%", left: "-15%", rotate: -14, color: "rgba(255,255,255,0.55)", duration: 22, delay: 0 },
@@ -14,44 +12,28 @@ const FIBERS = [
 ];
 
 export default function SiriGlow() {
-  const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => setMounted(true), []);
-
-  const isDark = mounted && resolvedTheme === "dark";
-
   return (
-    <AnimatePresence>
-      {isDark ? (
+    <div
+      aria-hidden
+      className="pointer-events-none fixed inset-0 -z-10 overflow-hidden opacity-0 transition-opacity duration-700 dark:opacity-100"
+    >
+      {FIBERS.map((fiber, i) => (
         <motion.div
-          key="siri-glow"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.8 }}
-          className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
-          aria-hidden
-        >
-          {FIBERS.map((fiber, i) => (
-            <motion.div
-              key={i}
-              className="absolute h-px rounded-full"
-              style={{
-                width: fiber.width,
-                top: fiber.top,
-                left: fiber.left,
-                background: `linear-gradient(90deg, transparent, ${fiber.color}, transparent)`,
-                filter: "blur(3px)",
-                rotate: fiber.rotate,
-                willChange: "transform, opacity",
-              }}
-              animate={{ x: [0, 70, 0], opacity: [0.15, 0.6, 0.15] }}
-              transition={{ duration: fiber.duration, repeat: Infinity, ease: "easeInOut", delay: fiber.delay }}
-            />
-          ))}
-        </motion.div>
-      ) : null}
-    </AnimatePresence>
+          key={i}
+          className="absolute h-px rounded-full"
+          style={{
+            width: fiber.width,
+            top: fiber.top,
+            left: fiber.left,
+            background: `linear-gradient(90deg, transparent, ${fiber.color}, transparent)`,
+            filter: "blur(3px)",
+            rotate: fiber.rotate,
+            willChange: "transform, opacity",
+          }}
+          animate={{ x: [0, 70, 0], opacity: [0.15, 0.6, 0.15] }}
+          transition={{ duration: fiber.duration, repeat: Infinity, ease: "easeInOut", delay: fiber.delay }}
+        />
+      ))}
+    </div>
   );
 }
