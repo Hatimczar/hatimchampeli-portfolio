@@ -1,0 +1,31 @@
+export const metadata = {
+  title: "What Actually Breaks in Apple Ecosystem Rollouts",
+  description:
+    "Three recurring failure points I see across Apple ecosystem deployments — DEP enrollment gaps, JAMF profile drift, and the change-management step everyone skips.",
+  date: "2026-08-15",
+  tags: ["Apple Ecosystem", "JAMF", "MDM"],
+};
+
+Most Apple ecosystem rollouts don't fail on the technical setup. DEP, ABM, and JAMF Pro are mature, well-documented tools — the failure points are almost always process gaps that show up weeks after go-live.
+
+## 1. DEP enrollment gaps
+
+Devices purchased outside the sanctioned procurement channel — a manager buying a MacBook directly from Apple retail, a device transferred from another entity — never make it into Apple Business Manager. They enroll as unsupervised, unmanaged devices, invisible to your MDM until someone notices six months later during an audit.
+
+The fix isn't technical. It's a procurement policy: every Apple device purchase routes through one channel, tied to your ABM organization ID, with no exceptions. I write that policy down and get it signed before touching a single JAMF profile.
+
+## 2. Profile drift
+
+JAMF configuration profiles get edited in place over time — a Wi-Fi certificate renewed, a VPN payload tweaked, a restriction loosened for one team and never reverted. Eighteen months in, nobody can tell you what a "standard" device configuration actually looks like anymore.
+
+I treat configuration profiles the way engineers treat infrastructure: versioned, documented, and changed through a deliberate process, not ad hoc edits in the JAMF console.
+
+## 3. The skipped step: change management
+
+The rollout that gets remembered as "the annoying one" almost never had a technical problem. It had no communication plan. Users found out their machine was getting re-enrolled, encrypted, or restricted on the day it happened, not two weeks before with a clear explanation of why.
+
+A two-week notice, a one-page FAQ, and a named point of contact for issues solves more support tickets than any amount of additional QA on the configuration itself.
+
+---
+
+None of this is exotic. It's the same lesson every enterprise IT rollout eventually learns: the technology is rarely the hard part.
