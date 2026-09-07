@@ -152,7 +152,7 @@ export const ventures = [
     id: "photoczaro",
     tag: "Creative Venture",
     title: "Photoczaro",
-    context: "Co-Founder & Creative Director, 2019-Present",
+    context: "Founder & Creative Director, 2019-Present",
     description:
       "Portraits, fashion, and boudoir shoots, turned into internationally published photography. Motto: Capturing Life, Creating Art.",
     outcome: "Best Photographer 2021, 999 People's Choice Awards.",
