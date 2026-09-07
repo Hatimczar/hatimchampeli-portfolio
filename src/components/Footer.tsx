@@ -1,11 +1,14 @@
 "use client";
 
 import { Mail, ArrowUp } from "lucide-react";
+import { useLenis } from "lenis/react";
 import Container from "./Container";
 import { LinkedInBadge } from "@/lib/icons";
 import { profile } from "@/lib/data";
 
 export default function Footer() {
+  const lenis = useLenis();
+
   return (
     <footer className="border-t border-line py-10">
       <Container className="flex flex-col items-center justify-between gap-6 sm:flex-row">
@@ -23,7 +26,8 @@ export default function Footer() {
             href="#top"
             onClick={(e) => {
               e.preventDefault();
-              window.scrollTo({ top: 0, behavior: "smooth" });
+              if (lenis) lenis.scrollTo(0);
+              else window.scrollTo({ top: 0, behavior: "smooth" });
             }}
             className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-ink-soft transition-colors hover:bg-canvas-alt"
             aria-label="Back to top"

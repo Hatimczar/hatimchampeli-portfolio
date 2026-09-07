@@ -17,7 +17,7 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-const SITE_URL = "https://hatimchampeli.com";
+const SITE_URL = "https://hatimchampeli-portfolio.pages.dev";
 const SITE_TITLE = "Hatim Champeli - Marketing, E-commerce & AI-Driven Growth";
 const SITE_DESCRIPTION =
   "Hatim Champeli turns Apple ecosystem complexity, e-commerce operations, and marketing data into measurable growth for premium tech and consumer electronics brands, from Dubai.";
@@ -40,6 +40,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Hatim Champeli" }],
   creator: "Hatim Champeli",
+  alternates: {
+    canonical: SITE_URL,
+  },
   openGraph: {
     type: "website",
     url: SITE_URL,

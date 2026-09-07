@@ -3,6 +3,13 @@
 import { useEffect, useRef } from "react";
 import { useInView, useMotionValue, useSpring } from "framer-motion";
 
+function format(value: number, decimals: number) {
+  return value.toLocaleString("en-US", {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  });
+}
+
 export default function Counter({
   value,
   prefix = "",
@@ -20,17 +27,16 @@ export default function Counter({
   const springValue = useSpring(motionValue, { damping: 26, stiffness: 90 });
 
   useEffect(() => {
-    if (inView) motionValue.set(value);
-  }, [inView, value, motionValue]);
+    if (!inView || !ref.current) return;
+    // Reset to 0 right as it enters view, then animate up to the real value.
+    ref.current.textContent = `${prefix}${format(0, decimals)}${suffix}`;
+    motionValue.set(value);
+  }, [inView, value, motionValue, prefix, suffix, decimals]);
 
   useEffect(() => {
     return springValue.on("change", (latest) => {
       if (ref.current) {
-        const formatted = latest.toLocaleString("en-US", {
-          minimumFractionDigits: decimals,
-          maximumFractionDigits: decimals,
-        });
-        ref.current.textContent = `${prefix}${formatted}${suffix}`;
+        ref.current.textContent = `${prefix}${format(latest, decimals)}${suffix}`;
       }
     });
   }, [springValue, prefix, suffix, decimals]);
@@ -38,7 +44,7 @@ export default function Counter({
   return (
     <span ref={ref}>
       {prefix}
-      {(0).toFixed(decimals)}
+      {format(value, decimals)}
       {suffix}
     </span>
   );

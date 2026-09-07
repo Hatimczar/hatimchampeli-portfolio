@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { navLinks, profile } from "@/lib/data";
 import ThemeToggle from "@/components/ThemeToggle";
+import { useScrollToSection } from "@/hooks/useScrollToSection";
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -38,9 +39,11 @@ export default function Nav() {
     return () => observer.disconnect();
   }, []);
 
+  const scrollToSection = useScrollToSection();
+
   const handleClick = (href: string) => {
     setOpen(false);
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    scrollToSection(href);
   };
 
   return (
@@ -57,8 +60,7 @@ export default function Nav() {
           href="#top"
           onClick={(e) => {
             e.preventDefault();
-            handleClick("body");
-            window.scrollTo({ top: 0, behavior: "smooth" });
+            handleClick("#top");
           }}
           className="font-display text-[15px] font-semibold text-ink shrink-0"
         >

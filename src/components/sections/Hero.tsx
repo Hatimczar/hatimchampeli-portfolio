@@ -7,6 +7,8 @@ import Container from "@/components/Container";
 import MagneticButton from "@/components/MagneticButton";
 import BrandMark from "@/components/BrandMark";
 import ContinuumDots from "@/components/ContinuumDots";
+import HeroOrb from "@/components/HeroOrb";
+import { useScrollToSection } from "@/hooks/useScrollToSection";
 import { brands, platforms, profile } from "@/lib/data";
 
 const easeOutQuart = [0.25, 1, 0.5, 1] as const;
@@ -22,9 +24,10 @@ const wordVariants = {
 
 export default function Hero() {
   const titleWords = profile.heroTitle.split(" ");
+  const scrollToSection = useScrollToSection();
 
   return (
-    <section id="top" className="relative overflow-hidden pt-28 pb-24 md:pt-32 md:pb-32">
+    <section id="top" className="circuit-bg relative overflow-hidden pt-28 pb-24 md:pt-32 md:pb-32">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10"
@@ -33,13 +36,7 @@ export default function Hero() {
             "radial-gradient(60% 50% at 50% 0%, rgba(53,80,122,0.10) 0%, rgba(250,250,250,0) 70%)",
         }}
       />
-      <motion.div
-        aria-hidden
-        className="pointer-events-none absolute -top-40 right-[-10%] -z-10 h-[420px] w-[420px] rounded-full opacity-40 blur-[90px] md:h-[560px] md:w-[560px]"
-        style={{ background: "radial-gradient(circle, rgba(107,140,184,0.35), transparent 70%)" }}
-        animate={{ y: [0, 24, 0] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-      />
+      <HeroOrb />
 
       <Container>
         <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-10">
@@ -85,13 +82,13 @@ export default function Hero() {
               className="mt-10 flex flex-wrap items-center gap-4"
             >
               <MagneticButton
-                onClick={() => document.querySelector("#ventures")?.scrollIntoView({ behavior: "smooth" })}
+                onClick={() => scrollToSection("#ventures")}
               >
                 View Work <ArrowUpRight size={17} />
               </MagneticButton>
               <MagneticButton
                 variant="secondary"
-                onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
+                onClick={() => scrollToSection("#contact")}
               >
                 Contact Me
               </MagneticButton>
@@ -164,7 +161,7 @@ export default function Hero() {
       </Container>
 
       <motion.button
-        onClick={() => document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" })}
+        onClick={() => scrollToSection("#about")}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, y: [0, 8, 0] }}
         transition={{ opacity: { delay: 1.4, duration: 0.6 }, y: { delay: 1.6, duration: 1.8, repeat: Infinity, ease: "easeInOut" } }}

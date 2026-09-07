@@ -17,20 +17,38 @@ const contactCards = [
   { icon: MapPin, label: "Location", value: profile.location, href: undefined },
 ];
 
+const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID;
+
 export default function Contact() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [form, setForm] = useState({ name: "", email: "", message: "" });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Portfolio inquiry from ${form.name || "website"}`);
-    const body = encodeURIComponent(`${form.message}\n\nFrom ${form.name} (${form.email})`);
-    window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
-    setSubmitted(true);
+
+    if (!FORMSPREE_ID) {
+      const subject = encodeURIComponent(`Portfolio inquiry from ${form.name || "website"}`);
+      const body = encodeURIComponent(`${form.message}\n\nFrom ${form.name} (${form.email})`);
+      window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
+      setStatus("sent");
+      return;
+    }
+
+    setStatus("sending");
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: "POST",
+        headers: { Accept: "application/json", "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      setStatus(res.ok ? "sent" : "error");
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
-    <section id="contact" className="section-pad">
+    <section id="contact" className="circuit-bg section-pad">
       <Container>
         <Reveal className="mx-auto mb-2 flex justify-center">
           <motion.div
@@ -82,7 +100,7 @@ export default function Contact() {
 
           <Reveal delay={0.1}>
             <form onSubmit={handleSubmit} className="rounded-lg border border-line bg-surface p-7 shadow-tight md:p-8">
-              {submitted ? (
+              {status === "sent" ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -91,8 +109,14 @@ export default function Contact() {
                   <span className="flex h-12 w-12 items-center justify-center rounded-full bg-accent-tint text-accent">
                     <Check size={22} />
                   </span>
-                  <p className="font-display text-[18px] font-semibold text-ink">Opening your email client…</p>
-                  <p className="text-[14px] text-muted">If it doesn&apos;t open, email me directly at {profile.email}</p>
+                  <p className="font-display text-[18px] font-semibold text-ink">
+                    {FORMSPREE_ID ? "Message sent" : "Opening your email client…"}
+                  </p>
+                  <p className="text-[14px] text-muted">
+                    {FORMSPREE_ID
+                      ? "Thanks for reaching out — I'll get back to you soon."
+                      : `If it doesn't open, email me directly at ${profile.email}`}
+                  </p>
                 </motion.div>
               ) : (
                 <div className="flex flex-col gap-5">
@@ -128,8 +152,13 @@ export default function Contact() {
                       placeholder="Tell me a little about the opportunity…"
                     />
                   </div>
-                  <MagneticButton type="submit" fullWidth className="justify-center">
-                    Send Message
+                  {status === "error" ? (
+                    <p className="text-[13.5px] text-red-500">
+                      Something went wrong. Please email me directly at {profile.email}.
+                    </p>
+                  ) : null}
+                  <MagneticButton type="submit" fullWidth className="justify-center" disabled={status === "sending"}>
+                    {status === "sending" ? "Sending…" : "Send Message"}
                   </MagneticButton>
                 </div>
               )}

@@ -12,6 +12,7 @@ export default function MagneticButton({
   className,
   type = "button",
   fullWidth = false,
+  disabled = false,
 }: {
   children: ReactNode;
   onClick?: () => void;
@@ -20,6 +21,7 @@ export default function MagneticButton({
   className?: string;
   type?: "button" | "submit";
   fullWidth?: boolean;
+  disabled?: boolean;
 }) {
   const ref = useRef<HTMLElement | null>(null);
   const [pos, setPos] = useState({ x: 0, y: 0 });
@@ -39,6 +41,7 @@ export default function MagneticButton({
     "relative inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-[15px] font-medium transition-colors duration-300",
     variant === "primary" ? "bg-ink text-canvas hover:opacity-90" : "bg-transparent text-ink border border-line hover:bg-canvas-alt",
     fullWidth && "w-full",
+    disabled && "opacity-60 pointer-events-none",
     className
   );
 
@@ -64,7 +67,7 @@ export default function MagneticButton({
   }
 
   return (
-    <button type={type} onClick={onClick} className={clsx("inline-block", fullWidth && "w-full")}>
+    <button type={type} onClick={onClick} disabled={disabled} className={clsx("inline-block", fullWidth && "w-full")}>
       {content}
     </button>
   );
