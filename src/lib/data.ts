@@ -70,7 +70,7 @@ export const experience = [
     location: "Dubai, UAE",
     period: "March 2024 - Present",
     summary:
-      "A premium consumer electronics distributor where I turn a curated Apple, Bang & Olufsen, Origin Acoustics, Ring, Pantheone Audio, and Dviced portfolio into GCC-wide growth.",
+      "A trusted reseller of Apple and other premium consumer electronics brands, where I turn a curated Apple, Bang & Olufsen, Origin Acoustics, Ring, Pantheone Audio, and Dviced portfolio into GCC-wide growth.",
     highlights: [
       "Turn Apple, B&O, Origin Acoustics, Ring, Pantheone Audio, and Dviced into consistent B2B revenue.",
       "Build partnerships that open GCC, EU, and Africa to e-commerce, telecom, and enterprise clients.",
