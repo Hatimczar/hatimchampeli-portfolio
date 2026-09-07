@@ -35,14 +35,27 @@ export default function HeroOrb() {
     const el = containerRef.current;
     if (!el || window.matchMedia("(hover: none)").matches) return;
 
-    const handleMove = (e: MouseEvent) => {
+    let rafId: number | null = null;
+    let lastEvent: MouseEvent | null = null;
+
+    const applyMove = () => {
+      rafId = null;
+      if (!lastEvent) return;
       const rect = el.getBoundingClientRect();
-      mouseX.set(((e.clientX - rect.left) / rect.width - 0.5) * 60);
-      mouseY.set(((e.clientY - rect.top) / rect.height - 0.5) * 60);
+      mouseX.set(((lastEvent.clientX - rect.left) / rect.width - 0.5) * 60);
+      mouseY.set(((lastEvent.clientY - rect.top) / rect.height - 0.5) * 60);
+    };
+
+    const handleMove = (e: MouseEvent) => {
+      lastEvent = e;
+      if (rafId === null) rafId = requestAnimationFrame(applyMove);
     };
 
     window.addEventListener("mousemove", handleMove, { passive: true });
-    return () => window.removeEventListener("mousemove", handleMove);
+    return () => {
+      window.removeEventListener("mousemove", handleMove);
+      if (rafId !== null) cancelAnimationFrame(rafId);
+    };
   }, [mouseX, mouseY, reduceMotion]);
 
   if (mounted && resolvedTheme === "dark") return null;
@@ -53,21 +66,16 @@ export default function HeroOrb() {
       aria-hidden
       className="pointer-events-none absolute -top-24 right-[-8%] -z-10 h-[560px] w-[560px] opacity-70 md:h-[640px] md:w-[640px]"
     >
-      <svg width="0" height="0" className="absolute">
-        <defs>
-          <filter id="hero-orb-goo">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="18" result="blur" />
-            <feColorMatrix
-              in="blur"
-              mode="matrix"
-              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 24 -10"
-              result="goo"
-            />
-          </filter>
-        </defs>
-      </svg>
-
-      <div className="relative h-full w-full" style={{ filter: "url(#hero-orb-goo)" }}>
+      {/* Native CSS blur+contrast ("goo" merge) instead of an SVG <filter> reference:
+          SVG filters are far more expensive to composite than CSS filter functions. */}
+      <div
+        className="relative h-full w-full"
+        style={{
+          filter: "blur(18px) contrast(22)",
+          willChange: "filter",
+          transform: "translateZ(0)",
+        }}
+      >
         {BLOBS.map((blob, i) => (
           <Blob key={i} {...blob} springX={springX} springY={springY} reduceMotion={!!reduceMotion} />
         ))}
