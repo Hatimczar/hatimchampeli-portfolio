@@ -1,31 +1,35 @@
 export const metadata = {
-  title: "What Actually Breaks in Apple Ecosystem Rollouts in the UAE",
+  title: "Apple Just Killed Apple Business Manager. Here's What UAE IT Teams Need to Know",
   description:
-    "Three recurring failure points in Apple ecosystem deployments across UAE enterprises: DEP enrollment gaps, JAMF profile drift, and the change-management step everyone skips.",
-  date: "2026-08-15",
-  tags: ["Apple Ecosystem", "JAMF", "MDM", "UAE"],
+    "Apple Business replaces Apple Business Manager, Business Essentials, and Business Connect with one free platform that has built-in MDM. Jamf just got a new CEO and made its biggest acquisition ever. What it means for UAE enterprises.",
+  date: "2026-09-03",
+  tags: ["Apple", "Apple Business", "JAMF", "MDM", "UAE"],
 };
 
-Dubai and Abu Dhabi have some of the fastest-growing Apple enterprise footprints in the region. Free zones like DIFC and ADGM run almost entirely on Mac and iPhone fleets, and government entities across the UAE have been steadily replacing legacy Windows estates with managed Apple devices. Most of these rollouts don't fail on the technical setup. DEP, ABM, and JAMF Pro are mature, well-documented tools. The failure points are almost always process gaps that surface weeks after go-live, and I see the same three on nearly every UAE engagement.
+Apple quietly reshaped enterprise IT this year, and if your organization runs on Apple Business Manager, JAMF, or both, it's worth catching up on what changed and what it means from a Dubai or Abu Dhabi office.
 
-## 1. DEP enrollment gaps
+## What launched
 
-Devices purchased outside the sanctioned procurement channel, a manager buying a MacBook directly from an Apple-authorised reseller in Dubai Mall, a device transferred in from a regional office in Riyadh or Doha, never make it into Apple Business Manager. They enroll as unsupervised, unmanaged devices, invisible to your MDM until someone notices six months later during an audit.
+In April, Apple discontinued three separate services, Apple Business Manager, Apple Business Essentials, and Apple Business Connect, and folded them into one platform: **Apple Business**.
 
-The fix isn't technical. It's a procurement policy: every Apple device purchase routes through one channel, tied to your ABM organization ID, no exceptions, and no side purchases from retail even when it feels faster. I write that policy down and get it signed before touching a single JAMF profile.
+The headline feature is built-in MDM at no extra cost. Apple Business lets you:
 
-## 2. Profile drift
+- Configure device settings, security policies, and available apps from one place
+- Use **Blueprints** to pre-configure devices for true zero-touch deployment
+- Assign **Managed Apple Accounts**, which keep work and personal data cryptographically separated on the same device
+- Auto-provision new hires through existing Google Workspace or Microsoft Entra ID directories
+- Run an employee app for installing work apps, requesting IT support, and browsing the company directory
 
-JAMF configuration profiles get edited in place over time. A Wi-Fi certificate renewed, a VPN payload tweaked for a new UAE data-residency requirement, a restriction loosened for one team and never reverted. Eighteen months in, nobody can tell you what a "standard" device configuration actually looks like anymore.
+It's free, no monthly device management fee, with optional paid add-ons for extra iCloud storage and AppleCare+. It's live in over 200 countries and regions, which includes the UAE from day one.
 
-I treat configuration profiles the way engineers treat infrastructure: versioned, documented, and changed through a deliberate process, not ad hoc edits in the JAMF console.
+## Why Jamf is moving fast
 
-## 3. The skipped step: change management
+Apple building MDM directly into a free platform is a direct shot at the third-party MDM market that Jamf, Mosyle, and others have built their businesses on. Jamf isn't standing still: the company brought in **Beth Tschida as its new CEO**, succeeding John Strosahl, and closed its **biggest acquisition to date**, a $400 million deal for Wandera, a mobile security and network intelligence company, to push further into the compliance and security territory that a free, lighter-touch Apple tool isn't built to cover.
 
-The rollout that gets remembered as "the annoying one" almost never had a technical problem. It had no communication plan. Users found out their machine was getting re-enrolled, encrypted, or restricted on the day it happened, not two weeks before with a clear explanation of why, and in a bilingual (Arabic/English) workforce, a poorly worded notice lands even worse.
+## The UAE decision
 
-A two-week notice, a one-page FAQ in both languages, and a named point of contact for issues solves more support tickets than any amount of additional QA on the configuration itself.
+For a small team in Dubai running twenty MacBooks and a handful of iPads, Apple Business's free tier is a genuine option. Blueprints alone can replace a chunk of what a smaller org was paying JAMF for.
 
-***
+For anything larger, or anything touching regulated data, the calculus doesn't change as much as the headlines suggest. DIFC and ADGM entities, government-adjacent organizations, and any UAE business managing devices under a compliance framework will still lean on JAMF or Mosyle for the depth Apple Business doesn't attempt to replicate: granular compliance reporting, deep third-party integrations, and the kind of audit trail regulators actually ask for.
 
-None of this is exotic. It's the same lesson every enterprise IT rollout eventually learns, in Dubai, London, or anywhere else: the technology is rarely the hard part.
+The honest read for most of my UAE clients: start evaluating Apple Business now if you're a smaller operation, but don't rip out JAMF this quarter if you're managing a fleet that answers to a regulator. Apple Business is one year old. Give it a cycle before you trust it with anything you can't afford to get wrong.
