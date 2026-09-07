@@ -10,9 +10,14 @@ import Reveal from "@/components/Reveal";
 
 const BLOG_DIR = path.join(process.cwd(), "src/content/blog");
 
+const SITE_URL = "https://hatimchampeli-portfolio.pages.dev";
+
 export const metadata = {
   title: "Blog",
-  description: "Notes on Apple ecosystem deployments, e-commerce operations, and AI-driven marketing.",
+  description:
+    "Notes on Apple ecosystem deployments, UAE e-commerce operations, and AI-driven marketing, written from Dubai.",
+  keywords: ["Apple ecosystem UAE", "e-commerce Dubai", "AI marketing UAE", "JAMF MDM Dubai"],
+  alternates: { canonical: `${SITE_URL}/blog` },
 };
 
 type PostMeta = {

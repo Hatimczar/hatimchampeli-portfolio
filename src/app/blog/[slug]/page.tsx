@@ -6,8 +6,10 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Container from "@/components/Container";
 import Reveal from "@/components/Reveal";
+import { profile } from "@/lib/data";
 
 const BLOG_DIR = path.join(process.cwd(), "src/content/blog");
+const SITE_URL = "https://hatimchampeli-portfolio.pages.dev";
 
 export function generateStaticParams() {
   return fs
@@ -20,16 +22,52 @@ export const dynamicParams = false;
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const mod = await import(`@/content/blog/${slug}.mdx`);
-  return { title: mod.metadata.title, description: mod.metadata.description };
+  const { metadata } = await import(`@/content/blog/${slug}.mdx`);
+  const url = `${SITE_URL}/blog/${slug}`;
+
+  return {
+    title: metadata.title,
+    description: metadata.description,
+    keywords: metadata.tags,
+    alternates: { canonical: url },
+    openGraph: {
+      type: "article",
+      url,
+      title: metadata.title,
+      description: metadata.description,
+      publishedTime: metadata.date,
+      authors: [profile.name],
+      tags: metadata.tags,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: metadata.title,
+      description: metadata.description,
+    },
+  };
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const { default: Post, metadata } = await import(`@/content/blog/${slug}.mdx`);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: metadata.title,
+    description: metadata.description,
+    datePublished: metadata.date,
+    dateModified: metadata.date,
+    author: { "@type": "Person", name: profile.name, url: SITE_URL },
+    publisher: { "@type": "Person", name: profile.name },
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/blog/${slug}` },
+    keywords: metadata.tags.join(", "),
+  };
+
   return (
     <>
+      {/* eslint-disable-next-line react/no-danger */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Nav />
       <main className="flex-1">
         <article className="circuit-bg section-pad pt-36">
