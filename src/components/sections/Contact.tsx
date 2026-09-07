@@ -124,6 +124,8 @@ export default function Contact() {
                     <label className="text-[13px] font-medium text-ink-soft">Name</label>
                     <input
                       required
+                      name="name"
+                      autoComplete="name"
                       value={form.name}
                       onChange={(e) => setForm({ ...form, name: e.target.value })}
                       className="mt-2 w-full rounded-sm border border-line bg-canvas px-4 py-3 text-[14.5px] text-ink outline-none transition-colors focus:border-accent-soft"
@@ -135,6 +137,8 @@ export default function Contact() {
                     <input
                       required
                       type="email"
+                      name="email"
+                      autoComplete="email"
                       value={form.email}
                       onChange={(e) => setForm({ ...form, email: e.target.value })}
                       className="mt-2 w-full rounded-sm border border-line bg-canvas px-4 py-3 text-[14.5px] text-ink outline-none transition-colors focus:border-accent-soft"
@@ -146,6 +150,7 @@ export default function Contact() {
                     <textarea
                       required
                       rows={4}
+                      name="message"
                       value={form.message}
                       onChange={(e) => setForm({ ...form, message: e.target.value })}
                       className="mt-2 w-full resize-none rounded-sm border border-line bg-canvas px-4 py-3 text-[14.5px] text-ink outline-none transition-colors focus:border-accent-soft"

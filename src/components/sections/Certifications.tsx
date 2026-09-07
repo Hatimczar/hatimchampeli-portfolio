@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Award, ShieldCheck, Sparkles, GraduationCap, ArrowUpRight } from "lucide-react";
+import { Award, ShieldCheck, Sparkles, GraduationCap, ArrowUpRight, ChevronDown } from "lucide-react";
 import Container from "@/components/Container";
 import SectionHeading from "@/components/SectionHeading";
 import { RevealGroup, revealItem } from "@/components/Reveal";
@@ -14,7 +15,13 @@ const categoryIcons = {
   ai: Sparkles,
 } as const;
 
+const INITIAL_COUNT = 6;
+
 export default function Certifications() {
+  const [showAll, setShowAll] = useState(false);
+  const visible = showAll ? certifications : certifications.slice(0, INITIAL_COUNT);
+  const hiddenCount = certifications.length - INITIAL_COUNT;
+
   return (
     <section id="certifications" className="section-pad">
       <Container>
@@ -24,7 +31,7 @@ export default function Certifications() {
           description="Verified across Apple enterprise tooling, Google marketing platforms, and AI-native workflows."
         />
         <RevealGroup className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {certifications.map((cert) => {
+          {visible.map((cert) => {
             const Icon = categoryIcons[cert.category];
             return (
               <motion.a
@@ -52,6 +59,18 @@ export default function Certifications() {
             );
           })}
         </RevealGroup>
+
+        {hiddenCount > 0 ? (
+          <div className="mt-8 flex justify-center">
+            <button
+              onClick={() => setShowAll((v) => !v)}
+              className="inline-flex items-center gap-1.5 rounded-full border border-line px-5 py-2.5 text-[13.5px] font-medium text-ink-soft transition-colors duration-200 hover:bg-canvas-alt hover:text-ink"
+            >
+              {showAll ? "Show fewer credentials" : `View all credentials (${hiddenCount} more)`}
+              <ChevronDown size={15} className={`transition-transform duration-300 ${showAll ? "rotate-180" : ""}`} />
+            </button>
+          </div>
+        ) : null}
       </Container>
     </section>
   );

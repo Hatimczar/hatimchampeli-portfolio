@@ -26,8 +26,7 @@ export default function About() {
               </div>
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
+                animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="glass absolute -top-5 -right-5 rounded-full border border-line px-4 py-2 text-[12.5px] font-medium text-ink-soft shadow-tight"
               >

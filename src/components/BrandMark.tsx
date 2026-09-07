@@ -3,8 +3,19 @@ import type { brands } from "@/lib/data";
 
 type Mark = (typeof brands)[number];
 
+// These icons are wordmarks that already spell out the brand name, so pairing
+// them with a separate text label would show the name twice (e.g. "ring Ring").
+const WORDMARK_ICONS = new Set(["ring"]);
+
 export default function BrandMark({ mark }: { mark: Mark }) {
   if (mark.type === "icon") {
+    if (WORDMARK_ICONS.has(mark.id)) {
+      return (
+        <span className="flex items-center text-muted grayscale opacity-70 transition-opacity duration-300 hover:opacity-100 hover:text-ink">
+          <BrandIcon id={mark.id} className="h-5 w-auto" />
+        </span>
+      );
+    }
     return (
       <span className="flex items-center gap-2 text-muted grayscale opacity-70 transition-opacity duration-300 hover:opacity-100 hover:text-ink">
         <BrandIcon id={mark.id} className="h-5 w-5" />

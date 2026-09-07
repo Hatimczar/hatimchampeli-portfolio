@@ -26,22 +26,33 @@ export default function Nav() {
   useEffect(() => {
     const sections = navLinks
       .filter((link) => link.href.startsWith("#"))
-      .map((link) => document.querySelector(link.href))
-      .filter((el): el is Element => Boolean(el));
+      .map((link) => document.querySelector<HTMLElement>(link.href))
+      .filter((el): el is HTMLElement => Boolean(el));
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActive(`#${entry.target.id}`);
-          }
-        });
-      },
-      { rootMargin: "-40% 0px -50% 0px", threshold: 0 }
-    );
+    // Determine the active section from real scroll position rather than an
+    // IntersectionObserver band, which can misfire on short sections or when
+    // two sections' entries land in the same callback batch out of order.
+    const updateActive = () => {
+      const line = window.scrollY + 120;
+      let current = "";
+      for (const el of sections) {
+        const top = el.getBoundingClientRect().top + window.scrollY;
+        if (top <= line) {
+          current = `#${el.id}`;
+        } else {
+          break;
+        }
+      }
+      if (current) setActive(current);
+    };
 
-    sections.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    updateActive();
+    window.addEventListener("scroll", updateActive, { passive: true });
+    window.addEventListener("resize", updateActive);
+    return () => {
+      window.removeEventListener("scroll", updateActive);
+      window.removeEventListener("resize", updateActive);
+    };
   }, []);
 
   const scrollToSection = useScrollToSection();

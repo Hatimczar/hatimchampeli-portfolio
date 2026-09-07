@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion, type Variants } from "framer-motion";
 import type { ReactNode } from "react";
 
@@ -14,7 +15,23 @@ type RevealProps = {
 
 const easeOutQuart = [0.25, 1, 0.5, 1] as const;
 
+function useMounted() {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  return mounted;
+}
+
 export default function Reveal({ children, delay = 0, y = 24, className, once = true }: RevealProps) {
+  const mounted = useMounted();
+
+  // Content defaults to fully visible so it never depends on JS successfully
+  // initialising and running whileInView (crawlers, slow connections, a JS
+  // error elsewhere on the page, or a full-page capture without scrolling).
+  // The scroll-triggered reveal only takes over once mounted client-side.
+  if (!mounted) {
+    return <div className={className}>{children}</div>;
+  }
+
   const variants: Variants = {
     hidden: { opacity: 0, y },
     visible: {
@@ -46,6 +63,12 @@ export function RevealGroup({
   className?: string;
   stagger?: number;
 }) {
+  const mounted = useMounted();
+
+  if (!mounted) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <motion.div
       className={className}
