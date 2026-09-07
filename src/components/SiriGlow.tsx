@@ -3,12 +3,12 @@
 import { motion } from "framer-motion";
 
 const FIBERS = [
-  { width: 560, top: "12%", left: "-15%", rotate: -14, color: "rgba(255,255,255,0.55)", duration: 22, delay: 0 },
-  { width: 460, top: "28%", left: "45%", rotate: 10, color: "rgba(93,150,255,0.5)", duration: 26, delay: 3 },
-  { width: 500, top: "48%", left: "-10%", rotate: -8, color: "rgba(255,178,90,0.45)", duration: 24, delay: 1.5 },
-  { width: 420, top: "66%", left: "55%", rotate: 16, color: "rgba(255,255,255,0.4)", duration: 28, delay: 5 },
-  { width: 380, top: "8%", left: "58%", rotate: -20, color: "rgba(93,150,255,0.4)", duration: 20, delay: 2 },
-  { width: 440, top: "82%", left: "5%", rotate: 6, color: "rgba(255,178,90,0.35)", duration: 30, delay: 4 },
+  { width: 620, top: "12%", left: "-15%", rotate: -14, color: "rgba(255,255,255,0.95)", duration: 22, delay: 0 },
+  { width: 520, top: "28%", left: "42%", rotate: 10, color: "rgba(120,170,255,0.9)", duration: 26, delay: 3 },
+  { width: 560, top: "48%", left: "-10%", rotate: -8, color: "rgba(255,190,110,0.85)", duration: 24, delay: 1.5 },
+  { width: 480, top: "66%", left: "52%", rotate: 16, color: "rgba(255,255,255,0.75)", duration: 28, delay: 5 },
+  { width: 440, top: "8%", left: "55%", rotate: -20, color: "rgba(120,170,255,0.8)", duration: 20, delay: 2 },
+  { width: 500, top: "82%", left: "2%", rotate: 6, color: "rgba(255,190,110,0.7)", duration: 30, delay: 4 },
 ];
 
 export default function SiriGlow() {
@@ -20,17 +20,18 @@ export default function SiriGlow() {
       {FIBERS.map((fiber, i) => (
         <motion.div
           key={i}
-          className="absolute h-px rounded-full"
+          className="absolute rounded-full"
           style={{
             width: fiber.width,
+            height: 2,
             top: fiber.top,
             left: fiber.left,
             background: `linear-gradient(90deg, transparent, ${fiber.color}, transparent)`,
-            filter: "blur(3px)",
+            filter: "blur(2.5px)",
             rotate: fiber.rotate,
             willChange: "transform, opacity",
           }}
-          animate={{ x: [0, 70, 0], opacity: [0.15, 0.6, 0.15] }}
+          animate={{ x: [0, 70, 0], opacity: [0.35, 1, 0.35] }}
           transition={{ duration: fiber.duration, repeat: Infinity, ease: "easeInOut", delay: fiber.delay }}
         />
       ))}
