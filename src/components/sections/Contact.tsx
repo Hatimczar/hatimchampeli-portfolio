@@ -114,7 +114,7 @@ export default function Contact() {
                   </p>
                   <p className="text-[14px] text-muted">
                     {FORMSPREE_ID
-                      ? "Thanks for reaching out — I'll get back to you soon."
+                      ? "Thanks for reaching out. I'll get back to you soon."
                       : `If it doesn't open, email me directly at ${profile.email}`}
                   </p>
                 </motion.div>

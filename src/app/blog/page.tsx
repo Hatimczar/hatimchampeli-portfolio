@@ -54,7 +54,7 @@ export default async function BlogIndexPage() {
             <SectionHeading
               eyebrow="Blog"
               title="Notes from the field"
-              description="Apple ecosystem deployments, e-commerce operations, and AI-driven marketing — written from what actually happened, not the theory."
+              description="Apple ecosystem deployments, e-commerce operations, and AI-driven marketing, written from what actually happened, not the theory."
             />
 
             <div className="mt-14 flex flex-col gap-5">
