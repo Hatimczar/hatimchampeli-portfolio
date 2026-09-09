@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -26,6 +27,7 @@ type PostMeta = {
   description: string;
   date: string;
   tags: string[];
+  coverImage?: string;
 };
 
 async function getPosts(): Promise<PostMeta[]> {
@@ -62,9 +64,20 @@ export default async function BlogIndexPage() {
                 <Reveal key={post.slug} delay={i * 0.05}>
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="group flex flex-col gap-3 rounded-lg border border-line bg-surface p-7 shadow-tight transition-shadow duration-300 hover:shadow-soft md:flex-row md:items-center md:justify-between md:p-8"
+                    className="group flex flex-col gap-5 rounded-lg border border-line bg-surface p-7 shadow-tight transition-shadow duration-300 hover:shadow-soft md:flex-row md:items-center md:justify-between md:p-8"
                   >
-                    <div className="min-w-0">
+                    {post.coverImage && (
+                      <div className="relative h-40 w-full shrink-0 overflow-hidden rounded-md md:h-28 md:w-44 md:order-first">
+                        <Image
+                          src={post.coverImage}
+                          alt=""
+                          fill
+                          className="object-cover"
+                          sizes="(min-width: 768px) 176px, 100vw"
+                        />
+                      </div>
+                    )}
+                    <div className="min-w-0 flex-1">
                       <div className="flex flex-wrap items-center gap-3 text-[12.5px] text-muted">
                         <time dateTime={post.date}>
                           {new Date(post.date).toLocaleDateString("en-US", {

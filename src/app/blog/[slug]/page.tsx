@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -38,11 +39,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       publishedTime: metadata.date,
       authors: [profile.name],
       tags: metadata.tags,
+      images: metadata.coverImage ? [{ url: `${SITE_URL}${metadata.coverImage}` }] : undefined,
     },
     twitter: {
       card: "summary_large_image",
       title: metadata.title,
       description: metadata.description,
+      images: metadata.coverImage ? [`${SITE_URL}${metadata.coverImage}`] : undefined,
     },
   };
 }
@@ -97,6 +100,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 {metadata.title}
               </h1>
             </Reveal>
+
+            {metadata.coverImage && (
+              <Reveal delay={0.09}>
+                <div className="relative mt-8 aspect-[16/9.5] w-full overflow-hidden rounded-lg border border-line">
+                  <Image src={metadata.coverImage} alt={metadata.title} fill priority className="object-cover" sizes="760px" />
+                </div>
+              </Reveal>
+            )}
 
             <Reveal delay={0.12}>
               <div className="prose prose-neutral mt-10 max-w-none prose-headings:font-display prose-headings:font-semibold prose-headings:text-ink prose-p:text-body prose-p:leading-relaxed prose-strong:text-ink-soft prose-li:text-body dark:prose-invert">
