@@ -18,9 +18,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 const SITE_URL = "https://hatimchampeli-portfolio.pages.dev";
-const SITE_TITLE = "Hatim Champeli - Marketing, E-commerce & AI-Driven Growth";
+const SITE_TITLE = "Hatim Champeli - Enterprise IT Solutions & Technology Sales";
 const SITE_DESCRIPTION =
-  "Hatim Champeli turns Apple ecosystem complexity, e-commerce operations, and marketing data into measurable growth for premium tech and consumer electronics brands, from Dubai.";
+  "Hatim Champeli helps UAE businesses choose the right technology and make IT easier to manage, with deep experience in Apple ecosystem deployments, e-commerce operations, and AI-driven marketing, from Dubai.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

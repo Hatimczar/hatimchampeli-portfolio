@@ -3,10 +3,10 @@ export const profile = {
   location: "Dubai, UAE",
   email: "hatimchampeli@icloud.com",
   linkedin: "https://linkedin.com/in/hatimchampeli",
-  tagline: "Marketing, E-commerce & AI-Driven Growth",
+  tagline: "Enterprise IT Solutions & Technology Sales",
   heroTitle: "I turn tech and commerce complexity into growth.",
   heroSubtitle:
-    "I built the Apple ecosystem deployments, marketplace operations, and AI-driven campaigns that made it happen.",
+    "I help businesses choose the right technology and make IT easier to manage, building on Apple ecosystem deployments, marketplace operations, and AI-driven campaigns.",
 };
 
 export const navLinks = [

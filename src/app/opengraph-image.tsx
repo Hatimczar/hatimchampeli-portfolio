@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const dynamic = "force-static";
-export const alt = "Hatim Champeli - Marketing, E-commerce & AI-Driven Growth";
+export const alt = "Hatim Champeli - Enterprise IT Solutions & Technology Sales";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -33,7 +33,7 @@ export default function Image() {
           }}
         >
           <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#8fb0d6" }} />
-          Marketing, E-commerce &amp; AI-Driven Growth
+          Enterprise IT Solutions &amp; Technology Sales
         </div>
         <div style={{ display: "flex", fontSize: 76, fontWeight: 700, marginTop: 28, lineHeight: 1.1 }}>
           Hatim Champeli
