@@ -6,7 +6,7 @@ export const profile = {
   tagline: "Marketing, E-commerce & AI-Driven Growth",
   heroTitle: "I turn tech and commerce complexity into growth.",
   heroSubtitle:
-    "I build the Apple ecosystem deployments, marketplace operations, and AI-driven campaigns that make it happen.",
+    "I built the Apple ecosystem deployments, marketplace operations, and AI-driven campaigns that made it happen.",
 };
 
 export const navLinks = [
@@ -63,22 +63,40 @@ export const focusAreas = [
 
 export const experience = [
   {
+    id: "brilyant",
+    role: "Account Manager - UAE",
+    focus: "Enterprise IT · Apple Business · Cloud & Security",
+    company: "Brilyant",
+    location: "Dubai, UAE",
+    period: "October 2026 - Present",
+    summary:
+      "Developing enterprise accounts across the UAE through a consultative approach, helping IT leaders and procurement teams choose the right technology and make IT easier to manage.",
+    highlights: [
+      "Develop new accounts and strengthen existing customer relationships across the UAE.",
+      "Cover workplace computing, Apple business solutions, device management, software licensing, cloud and infrastructure, cybersecurity, unified communications, and AI services.",
+      "Align proposals with business priorities, budgets, and deployment needs.",
+      "Coordinate discovery meetings, demonstrations, proofs of concept, and commercial proposals.",
+      "Manage the sales pipeline from first conversation through to purchase order.",
+      "Partner with presales and delivery teams on deployment planning and ongoing customer needs.",
+    ],
+  },
+  {
     id: "florence",
     role: "Marketing & Sales Executive",
     focus: "Apple · Bang & Olufsen · Origin Acoustics · Ring & More",
     company: "Florence Trading FZCO",
     location: "Dubai, UAE",
-    period: "March 2024 - Present",
+    period: "May 2024 - September 2026",
     summary:
-      "A trusted reseller of Apple and other premium consumer electronics brands, where I turn a curated Apple, Bang & Olufsen, Origin Acoustics, Ring, Pantheone Audio, and Dviced portfolio into GCC-wide growth.",
+      "A trusted reseller of Apple and other premium consumer electronics brands, where I turned a curated Apple, Bang & Olufsen, Origin Acoustics, Ring, Pantheone Audio, and Dviced portfolio into GCC-wide growth.",
     highlights: [
-      "Turn Apple, B&O, Origin Acoustics, Ring, Pantheone Audio, and Dviced into consistent B2B revenue.",
-      "Build partnerships that open GCC, EU, and Africa to e-commerce, telecom, and enterprise clients.",
-      "Grow corporate accounts across DAFZ/DSO, Dubai CommerCity, hospitality groups, and e& into long-term partnerships.",
-      "Turn fragmented device fleets into managed ecosystems with MDM, DEP, ABM, and JAMF.",
+      "Turned Apple, B&O, Origin Acoustics, Ring, Pantheone Audio, and Dviced into consistent B2B revenue.",
+      "Built partnerships that opened GCC, EU, and Africa to e-commerce, telecom, and enterprise clients.",
+      "Grew corporate accounts across DAFZ/DSO, Dubai CommerCity, hospitality groups, and e& into long-term partnerships.",
+      "Turned fragmented device fleets into managed ecosystems with MDM, DEP, ABM, and JAMF.",
       "Unlocked 25%+ growth in high-value deals within 12 months.",
-      "Streamline B2B and B2C operations across Noon, Shopify, and Ozon into one system.",
-      "Represent Florence at industry events, including with the Dubai Future Foundation.",
+      "Streamlined B2B and B2C operations across Noon, Shopify, and Ozon into one system.",
+      "Represented Florence at industry events, including with the Dubai Future Foundation.",
     ],
     logo: "/logos/florence-full-bw.png",
     logoDark: "/logos/florence-full-white.png",
@@ -89,7 +107,7 @@ export const experience = [
     focus: "Transportation & Logistics",
     company: "E-Man Transport Solutions LLC",
     location: "Dubai, UAE",
-    period: "February 2022 - March 2024",
+    period: "February 2022 - February 2024",
     summary:
       "Turned marketing and communications for a UAE transportation and logistics company into a cohesive brand, digital presence, and stakeholder strategy.",
     highlights: [
@@ -125,18 +143,18 @@ export const ventures = [
     id: "apple-bo-partnerships",
     tag: "Apple Ecosystem",
     title: "Enterprise Apple & B&O Partnerships",
-    context: "Florence Trading FZCO, 2024-Present",
+    context: "Florence Trading FZCO, 2024-2026",
     description:
-      "I turn strategic accounts across DAFZ/DSO, Dubai CommerCity, hospitality groups, and e& into long-term partnerships, pairing Apple and B&O ecosystems with ABM, DEP, and JAMF deployment.",
+      "I turned strategic accounts across DAFZ/DSO, Dubai CommerCity, hospitality groups, and e& into long-term partnerships, pairing Apple and B&O ecosystems with ABM, DEP, and JAMF deployment.",
     outcome: "25%+ growth in high-value deals within 12 months.",
   },
   {
     id: "marketplace-ops",
     tag: "E-commerce Operations",
     title: "Multi-Channel Marketplace Operations",
-    context: "Florence Trading FZCO, 2024-Present",
+    context: "Florence Trading FZCO, 2024-2026",
     description:
-      "I streamline B2B and B2C storefronts across Noon, Shopify, and Ozon into one operation, from stock to pricing to catalog structure.",
+      "I streamlined B2B and B2C storefronts across Noon, Shopify, and Ozon into one operation, from stock to pricing to catalog structure.",
     outcome: "Multi-channel growth across three distinct marketplace ecosystems.",
   },
   {
@@ -167,7 +185,7 @@ export const results = [
     suffix: "M",
     decimals: 1,
     label: "Commercial Revenue Driven",
-    context: "As Marketing & Sales Executive, Florence Trading FZCO, March 2024 - Present",
+    context: "As Marketing & Sales Executive, Florence Trading FZCO, May 2024 - September 2026",
   },
   {
     value: 50000,
@@ -175,7 +193,7 @@ export const results = [
     suffix: "+",
     decimals: 0,
     label: "Digital marketing budget managed",
-    context: "E-Man Transport Solutions, across search, social & display, Feb 2022 - Mar 2024",
+    context: "E-Man Transport Solutions, across search, social & display, Feb 2022 - Feb 2024",
   },
   {
     value: 50,
@@ -183,7 +201,7 @@ export const results = [
     suffix: "%",
     decimals: 0,
     label: "Growth in organic search rankings",
-    context: "E-Man Transport Solutions, plus a 30% increase in web traffic, Feb 2022 - Mar 2024",
+    context: "E-Man Transport Solutions, plus a 30% increase in web traffic, Feb 2022 - Feb 2024",
   },
   {
     value: 35,
