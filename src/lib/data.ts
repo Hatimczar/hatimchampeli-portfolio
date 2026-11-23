@@ -79,6 +79,8 @@ export const experience = [
       "Manage the sales pipeline from first conversation through to purchase order.",
       "Partner with presales and delivery teams on deployment planning and ongoing customer needs.",
     ],
+    logo: "/logos/brilyant-full.png",
+    logoDark: "/logos/brilyant-full-dark.png",
   },
   {
     id: "florence",
@@ -118,6 +120,7 @@ export const experience = [
       "Improved campaign effectiveness by 30% through Google Analytics-driven analysis.",
       "Turned a digital marketing budget of AED 50,000+ into results across search, social, and display.",
     ],
+    logo: "/logos/eman-full.png",
   },
   {
     id: "tmtc",
